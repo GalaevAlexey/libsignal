@@ -10,6 +10,7 @@ import * as util from '../util';
 
 import { assert, use } from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
+import { SEALED_SENDER_TRUST_ROOT_PRIVATE } from '../../TrustRoot';
 import {
   InMemoryIdentityKeyStore,
   InMemoryKyberPreKeyStore,
@@ -23,6 +24,26 @@ use(chaiAsPromised);
 util.initLogger();
 
 describe('SealedSender', () => {
+  it('validates with default trust root', () => {
+    const serverKey = SignalClient.PrivateKey.generate();
+    const serverCert = SignalClient.ServerCertificate.new(
+      1,
+      serverKey.getPublicKey(),
+      SEALED_SENDER_TRUST_ROOT_PRIVATE
+    );
+    const expires = Date.now() + 1000;
+    const identity = SignalClient.IdentityKeyPair.generate();
+    const senderCert = SignalClient.SenderCertificate.new(
+      'c56a4180-65aa-42ec-a945-5fd21dec0538',
+      null,
+      1,
+      identity.publicKey,
+      expires,
+      serverCert,
+      serverKey
+    );
+    assert.isTrue(senderCert.validateWithDefaultTrustRoot(expires - 1));
+  });
   it('can encrypt/decrypt 1-1 messages', async () => {
     const aKeys = new InMemoryIdentityKeyStore();
     const bKeys = new InMemoryIdentityKeyStore();

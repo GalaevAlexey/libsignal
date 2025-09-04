@@ -13,6 +13,9 @@ export * from './Address';
 import { PrivateKey, PublicKey } from './EcKeys';
 export * from './EcKeys';
 
+import { SEALED_SENDER_TRUST_ROOT_PUBLIC } from './TrustRoot';
+export { SEALED_SENDER_TRUST_ROOT_PUBLIC } from './TrustRoot';
+
 export * as usernames from './usernames';
 
 export * as io from './io';
@@ -831,6 +834,13 @@ export class SenderCertificate {
    */
   validate(trustRoot: PublicKey, time: number): boolean {
     return Native.SenderCertificate_Validate(this, [trustRoot], time);
+  }
+
+  /**
+   * Validates `this` against the built-in trust root at the given current time.
+   */
+  validateWithDefaultTrustRoot(time: number): boolean {
+    return this.validate(SEALED_SENDER_TRUST_ROOT_PUBLIC, time);
   }
 
   /**
