@@ -40,17 +40,23 @@ pub(crate) const CONNECTED_ELSEWHERE_CLOSE_CODE: u16 = 4409;
 
 const DOMAIN_CONFIG_CHAT: DomainConfig = DomainConfig {
     ip_v4: &[
-        ip_addr!(v4, "76.223.92.165"),
-        ip_addr!(v4, "13.248.212.111"),
+        ip_addr!(v4, "175.41.130.25"),
+        ip_addr!(v4, "54.179.146.175"),
+        ip_addr!(v4, "54.179.249.221"),
+        ip_addr!(v4, "52.221.78.102"),
+        ip_addr!(v4, "52.74.107.10"),
     ],
     ip_v6: &[
-        ip_addr!(v6, "2600:9000:a507:ab6d:4ce3:2f58:25d7:9cbf"),
-        ip_addr!(v6, "2600:9000:a61f:527c:d5eb:a431:5239:3232"),
+        ip_addr!(v6, "2406:da18:27f:c801:6ab0:ad5d:cff5:8164"),
+        ip_addr!(v6, "2406:da18:27f:c802:4537:2c7f:9739:3487"),
+        ip_addr!(v6, "2406:da18:27f:c801:6c06:9cb9:98a5:d2fd"),
+        ip_addr!(v6, "2406:da18:27f:c800:6f8f:b443:f73c:f734"),
+        ip_addr!(v6, "2406:da18:27f:c800:dfe8:7f3c:7d10:9429"),
     ],
     connect: ConnectionConfig {
-        hostname: "chat.signal.org",
+        hostname: "x-server.ngrok.app",
         port: DEFAULT_HTTPS_PORT,
-        cert: SIGNAL_ROOT_CERTIFICATES,
+        cert: RootCertificates::Native,
         min_tls_version: Some(SslVersion::TLS1_3),
         confirmation_header_name: Some(TIMESTAMP_HEADER_NAME),
         proxy: Some(ConnectionProxyConfig {
@@ -102,9 +108,9 @@ const DOMAIN_CONFIG_CHAT_NOISE_STAGING: NoiseDomainConfig = NoiseDomainConfig {
 
 const DOMAIN_CONFIG_CDSI: DomainConfig = DomainConfig {
     connect: ConnectionConfig {
-        hostname: "cdsi.signal.org",
+        hostname: "x-server.ngrok.app",
         port: DEFAULT_HTTPS_PORT,
-        cert: SIGNAL_ROOT_CERTIFICATES,
+        cert: RootCertificates::Native,
         min_tls_version: Some(SslVersion::TLS1_3),
         confirmation_header_name: None,
         proxy: Some(ConnectionProxyConfig {
@@ -112,8 +118,20 @@ const DOMAIN_CONFIG_CDSI: DomainConfig = DomainConfig {
             configs: [PROXY_CONFIG_F_PROD, PROXY_CONFIG_G],
         }),
     },
-    ip_v4: &[ip_addr!(v4, "40.122.45.194")],
-    ip_v6: &[ip_addr!(v6, "2603:1030:7::1")],
+    ip_v4: &[
+        ip_addr!(v4, "175.41.130.25"),
+        ip_addr!(v4, "54.179.146.175"),
+        ip_addr!(v4, "54.179.249.221"),
+        ip_addr!(v4, "52.221.78.102"),
+        ip_addr!(v4, "52.74.107.10"),
+    ],
+    ip_v6: &[
+        ip_addr!(v6, "2406:da18:27f:c801:6ab0:ad5d:cff5:8164"),
+        ip_addr!(v6, "2406:da18:27f:c802:4537:2c7f:9739:3487"),
+        ip_addr!(v6, "2406:da18:27f:c801:6c06:9cb9:98a5:d2fd"),
+        ip_addr!(v6, "2406:da18:27f:c800:6f8f:b443:f73c:f734"),
+        ip_addr!(v6, "2406:da18:27f:c800:dfe8:7f3c:7d10:9429"),
+    ],
 };
 
 const DOMAIN_CONFIG_CDSI_STAGING: DomainConfig = DomainConfig {
@@ -134,9 +152,9 @@ const DOMAIN_CONFIG_CDSI_STAGING: DomainConfig = DomainConfig {
 
 const DOMAIN_CONFIG_SVR2: DomainConfig = DomainConfig {
     connect: ConnectionConfig {
-        hostname: "svr2.signal.org",
+        hostname: "x-storage.ngrok.app",
         port: DEFAULT_HTTPS_PORT,
-        cert: SIGNAL_ROOT_CERTIFICATES,
+        cert: RootCertificates::Native,
         min_tls_version: Some(SslVersion::TLS1_3),
         confirmation_header_name: None,
         proxy: Some(ConnectionProxyConfig {
@@ -144,8 +162,20 @@ const DOMAIN_CONFIG_SVR2: DomainConfig = DomainConfig {
             configs: [PROXY_CONFIG_F_PROD, PROXY_CONFIG_G],
         }),
     },
-    ip_v4: &[ip_addr!(v4, "20.66.40.69")],
-    ip_v6: &[],
+    ip_v4: &[
+        ip_addr!(v4, "54.179.146.175"),
+        ip_addr!(v4, "54.179.249.221"),
+        ip_addr!(v4, "52.221.78.102"),
+        ip_addr!(v4, "175.41.130.25"),
+        ip_addr!(v4, "52.74.107.10"),
+    ],
+    ip_v6: &[
+        ip_addr!(v6, "2406:da18:27f:c800:6f8f:b443:f73c:f734"),
+        ip_addr!(v6, "2406:da18:27f:c802:4537:2c7f:9739:3487"),
+        ip_addr!(v6, "2406:da18:27f:c801:6c06:9cb9:98a5:d2fd"),
+        ip_addr!(v6, "2406:da18:27f:c800:dfe8:7f3c:7d10:9429"),
+        ip_addr!(v6, "2406:da18:27f:c801:6ab0:ad5d:cff5:8164"),
+    ],
 };
 
 const DOMAIN_CONFIG_SVR2_STAGING: DomainConfig = DomainConfig {
@@ -182,9 +212,9 @@ const DOMAIN_CONFIG_SVRB_STAGING: DomainConfig = DomainConfig {
 
 const DOMAIN_CONFIG_SVRB_PROD: DomainConfig = DomainConfig {
     connect: ConnectionConfig {
-        hostname: "svrb.signal.org",
+        hostname: "x-storage.ngrok.app",
         port: DEFAULT_HTTPS_PORT,
-        cert: SIGNAL_ROOT_CERTIFICATES,
+        cert: RootCertificates::Native,
         min_tls_version: Some(SslVersion::TLS1_3),
         confirmation_header_name: None,
         proxy: Some(ConnectionProxyConfig {
@@ -192,8 +222,20 @@ const DOMAIN_CONFIG_SVRB_PROD: DomainConfig = DomainConfig {
             configs: [PROXY_CONFIG_F_STAGING, PROXY_CONFIG_G],
         }),
     },
-    ip_v4: &[ip_addr!(v4, "20.114.45.6")],
-    ip_v6: &[],
+    ip_v4: &[
+        ip_addr!(v4, "54.179.146.175"),
+        ip_addr!(v4, "54.179.249.221"),
+        ip_addr!(v4, "52.221.78.102"),
+        ip_addr!(v4, "175.41.130.25"),
+        ip_addr!(v4, "52.74.107.10"),
+    ],
+    ip_v6: &[
+        ip_addr!(v6, "2406:da18:27f:c800:6f8f:b443:f73c:f734"),
+        ip_addr!(v6, "2406:da18:27f:c802:4537:2c7f:9739:3487"),
+        ip_addr!(v6, "2406:da18:27f:c801:6c06:9cb9:98a5:d2fd"),
+        ip_addr!(v6, "2406:da18:27f:c800:dfe8:7f3c:7d10:9429"),
+        ip_addr!(v6, "2406:da18:27f:c801:6ab0:ad5d:cff5:8164"),
+    ],
 };
 
 pub const PROXY_CONFIG_F_PROD: ProxyConfig = ProxyConfig {
